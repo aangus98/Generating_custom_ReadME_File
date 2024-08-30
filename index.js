@@ -69,14 +69,8 @@ function init() {
             message: questions[6],
             choices: ["MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "None"],
         },
-    ]).then((data) => {
-        let file = `   
-        ## Description  ${data.description} \n
-        ## Installation  ${data.installation} \n
-        ## Usage  ${data.usage} \n
-        ## Contribution  ${data.contribution} \n
-        ## Test  ${data.test} \n`
-        writeToFile("README.md", file, generateMarkdown(data));
+    ]).then((data) => { 
+        writeToFile("README.md", generateMarkdown(data));
     }
     );
 }
@@ -84,6 +78,7 @@ function init() {
 
 
 // Function call to initialize app
-
-
 init();
+export default function (data) {
+  // function body
+}

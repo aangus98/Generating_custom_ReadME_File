@@ -1,4 +1,5 @@
 import { generate } from "rxjs";
+import data from "../index.js"; 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
@@ -37,30 +38,22 @@ function renderLicenseSection(license) {
     if (license === "None") {
         return "";
     } else {
-        return `## ${license}`;
+        return `${license}`;
 }
 }
-
- function tableOfContents() {
-    return `## Table of Contents \n - [Description](#description) \n - [Installation](#installation) \n - [Usage](#usage) \n - [Contribution](#contribution) \n - [Test](#test)`;  
-}
-
-
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
  
     console.log(data);
-    let table = tableOfContents();
-    return `# ${data.title}
-    ${table}
+    return `# ${data.title} \n ## Description \n ${data.description} \n ## Installation \n ${data.installation} \n ## Usage \n ${data.usage} \n ## Contribution \n ${data.contribution} \n ## Test \n ${data.test} \n
   ${renderLicenseBadge(data.license)}
   ${renderLicenseLink(data.license)}
-  ${renderLicenseSection(data.license)} 
+  \n## Liscense \n ${renderLicenseSection(data.license)} 
 `;
 }
 
 
 
-//generateMarkdown(data)
+
 
 export default generateMarkdown;
