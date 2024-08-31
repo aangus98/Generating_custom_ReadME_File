@@ -5,17 +5,57 @@ import fs from "fs";
 import generateMarkdown from "./utils/generateMarkdown.js";
 
 // TODO: Create an array of questions for user input
-var Q1, Q2, Q3, Q4, Q5, Q6, Q7;
-const questions = [
-    Q1 = "What is the title of your project?",
-    Q2 = "Please provide a description of your project.",
-    Q3 = "Please provide installation instructions.",
-    Q4 = "Please provide usage information.",
-    Q5 = "Please provide contribution guidelines.",
-    Q6 = "Please provide test instructions.",
-    Q7 = "Please select a license for your project.",
-];
 
+const questions = [
+    {
+        // Title
+        // Need to change the format to make the title an h1
+        type: "input",
+        name: "title",
+        message: "What is the title of your project?",
+    },
+    {
+        type: "input",
+        name: "description",
+        message: "Please provide a description of your project.",
+    },
+    {
+        type: "input",
+        name: "installation",
+        message: "Please provide installation instructions.",
+    },
+    {
+        type: "input",
+        name: "usage",
+        message: "Please provide usage information.",
+    },
+    {
+        type: "input",
+        name: "contribution",
+        message: "Please provide contribution guidelines.",
+    },
+    {
+        type: "input",
+        name: "test",
+        message: "Please provide test instructions.",
+    },
+    {
+        type: "input",
+        name: "Github",
+        message: "Please enter your GitHub username.",
+    },
+    {
+        type: "input",
+        name: "Email",
+        message: "Please enter your email address.",
+    },
+    {
+        type: "list",
+        name: "license",
+        message: "Please select a license for your project.",
+        choices: ["MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "None"],
+    },
+]
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) => {
@@ -30,46 +70,11 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt([
-        {
-            // Title
-            // Need to change the format to make the title an h1
-            type: "input",
-            name: "title",
-            message: questions[0],
-        },
-        {
-            type: "input",
-            name: "description",
-            message: questions[1],
-        },
-        {
-            type: "input",
-            name: "installation",
-            message: questions[2],
-        },
-        {
-            type: "input",
-            name: "usage",
-            message: questions[3],
-        },
-        {
-            type: "input",
-            name: "contribution",
-            message: questions[4],
-        },
-        {
-            type: "input",
-            name: "test",
-            message: questions[5],
-        },
-        {
-            type: "list",
-            name: "license",
-            message: questions[6],
-            choices: ["MIT", "Apache 2.0", "GPL 3.0", "BSD 3", "None"],
-        },
-    ]).then((data) => { 
+    inquirer.prompt(questions).then((data) => { 
+
+
+        
+
         writeToFile("README.md", generateMarkdown(data));
     }
     );
@@ -80,5 +85,4 @@ function init() {
 // Function call to initialize app
 init();
 export default function (data) {
-  // function body
 }
